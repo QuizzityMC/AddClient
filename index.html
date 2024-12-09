@@ -5,6 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Canary Chat (Alpha) </title>
     <link rel="stylesheet" href="styles.css" />
+    <script>
+        function sendMessage() {
+            const input = document.getElementById('user-input');
+            const messageText = input.value;
+            if (messageText.trim() === '') return;
+
+            const messageArea = document.querySelector('.message-area');
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+
+            const userImage = document.createElement('img');
+            userImage.src = 'https://files.catbox.moe/htc467.webp'; // Default image for the user
+            messageDiv.appendChild(userImage);
+
+            const userName = document.createElement('p');
+            userName.dataset.user = 'QuizzityMC';  // Default user name
+            userName.textContent = 'QuizzityMC';
+            messageDiv.appendChild(userName);
+
+            const messageContent = document.createElement('p');
+            messageContent.textContent = messageText;
+            messageDiv.appendChild(messageContent);
+
+            messageArea.appendChild(messageDiv);
+            input.value = '';
+        }
+    </script>
 </head>
 <body>
     <div class="server-list">
@@ -35,10 +62,11 @@
             <p data-user>QuizzityMC</p>
             <p>Hello!</p>
         </div>
+    </div>
 
-        <div class="input-area">
-            <input type="text" id="user-input" name="user-input" placeholder="Type your message">
-        </div>
+    <div class="input-area">
+        <input type="text" id="user-input" name="user-input" placeholder="Type your message">
+        <button onclick="sendMessage()">Send</button>
     </div>
 
     <div class="members-list">
